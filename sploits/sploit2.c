@@ -36,8 +36,6 @@ int main(void)
   args[0] = TARGET;
   args[1] = str;
   args[2] = -1;
-  args[3] = NULL;
-
   
   env[0] = NULL;
   execve(TARGET, args, env);
