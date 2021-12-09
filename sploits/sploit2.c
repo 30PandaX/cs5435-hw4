@@ -38,6 +38,7 @@ int main(void)
   // 16 bits: maximum representable value 216 − 1 = 65,535
   // 65535 + 399 + 1 = 65935  
   args[2] = "65935";
+  args[3] = NULL;
 
   env[0] = NULL;
   execve(TARGET, args, env);
