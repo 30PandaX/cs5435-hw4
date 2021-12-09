@@ -13,6 +13,7 @@ int main(void)
   char *env[1];
   
   args[0] = TARGET;
+  // max input size is 4 * 5 = 20
   args[1] = "student"; 
   args[2] = NULL;
   
