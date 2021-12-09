@@ -9,7 +9,7 @@
 
 int main(void)
 {
-  char *args[3]; 
+  char *args[4]; 
   char *env[1];
 
   char str[408];
