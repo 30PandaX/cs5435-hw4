@@ -15,7 +15,7 @@ int main(void)
   char str[20];
   memset(str, 0, 20);
 
-  for (int i = 0; i < 16; i++)
+  for (int i = 0; i < 20; i++)
   {
   	strcat(str, "\x90");
   }
